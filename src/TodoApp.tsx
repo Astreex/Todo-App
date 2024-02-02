@@ -14,19 +14,26 @@ import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 import Box from '@mui/material/Box'
 
-const ColorModeContext = createContext({ styledTodoApp: () => {} });
+const ColorModeContext = createContext({ styledTodoApp: () => { } });
 
 const TodoApp = () => {
     const [newTodo, setNewTodo] = useState('')
-    const [todos, setTodos] = useState<TodoItem[]>(
-        JSON.parse(localStorage.getItem('todos') || '[]') || []
-    )
+    const [todos, setTodos] = useState<TodoItem[]>([])
+
     const theme = useTheme()
     const colorMode = useContext(ColorModeContext)
 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos))
     }, [todos])
+
+    useEffect(() => {
+        try {
+            JSON.parse(localStorage.getItem('todos') || '[]') || []
+        } catch (e) {
+            console.log(e)
+        }
+    }, [])
 
     const addTodo = () => {
         if (newTodo !== '') {
@@ -37,6 +44,7 @@ const TodoApp = () => {
             }
             setTodos([...todos, newTodoItem])
             setNewTodo('')
+
         }
     }
 
