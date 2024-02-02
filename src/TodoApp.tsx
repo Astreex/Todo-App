@@ -85,7 +85,9 @@ const TodoApp = () => {
                 </IconButton>
             </Box>
             <Container maxWidth="md">
-                <Grid textAlign="center">
+                <Grid textAlign="center" sx={{
+                    userSelect: 'none'
+                }}>
                     <h1>TodoApp</h1>
                     <TextField
                         size="small"
