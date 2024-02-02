@@ -22,11 +22,7 @@ const TodoApp = () => {
 
     const theme = useTheme()
     const colorMode = useContext(ColorModeContext)
-
-    useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(todos))
-    }, [todos])
-
+    
     useEffect(() => {
         try {
             JSON.parse(localStorage.getItem('todos') || '[]') || []
@@ -34,6 +30,12 @@ const TodoApp = () => {
             console.log(e)
         }
     }, [])
+    
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos])
+
+
 
     const addTodo = () => {
         if (newTodo !== '') {
