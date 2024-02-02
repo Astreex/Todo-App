@@ -18,19 +18,11 @@ const ColorModeContext = createContext({ styledTodoApp: () => { } });
 
 const TodoApp = () => {
     const [newTodo, setNewTodo] = useState('')
-    const [todos, setTodos] = useState<TodoItem[]>([])
-
+    const [todos, setTodos] = useState<TodoItem[]>(JSON.parse(localStorage.getItem('todos') || '[]') || []
+    )
     const theme = useTheme()
     const colorMode = useContext(ColorModeContext)
-    
-    useEffect(() => {
-        try {
-            JSON.parse(localStorage.getItem('todos') || '[]') || []
-        } catch (e) {
-            console.log(e)
-        }
-    }, [])
-    
+
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos))
     }, [todos])
