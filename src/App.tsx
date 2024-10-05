@@ -1,4 +1,4 @@
-import StyledTodoApp from './TodoApp'
+import StyledTodoApp from './StyledTodoApp'
 
 function App() {
   return (
